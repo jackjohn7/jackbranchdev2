@@ -1,0 +1,25 @@
+---
+import Icon from 'astro-icon';
+---
+
+<div class="flex flex-row items-center justify-between px-2 bg-green-400">
+  <a href="/">
+    <Icon size="40px" class="min-w-30" fill="white" pack="mdi" name="home"/>
+  </a>
+  <div class="flex flex-row items-center space-x-6">
+    <a class="dark:text-white">Resume</a>
+    <a class="dark:text-white">Blog</a>
+    <a class="dark:text-white">Projects</a>
+  </div>
+</div>
+
+<style>
+  [astro-icon] {
+    color: black;
+  }
+  @media (prefers-color-scheme: dark) {
+    [astro-icon] {
+      color: white;
+    }
+  }
+</style>
