@@ -13,7 +13,12 @@ import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
+import netlify from "@astrojs/netlify/functions";
+
+// https://astro.build/config
 export default defineConfig({
   site: "https://jackbranch.dev",
-  integrations: [tailwind(), mdx(), sitemap(), svelte()]
+  integrations: [tailwind(), mdx(), sitemap(), svelte()],
+  output: "server",
+  adapter: netlify()
 });
