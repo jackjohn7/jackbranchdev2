@@ -1,25 +1,27 @@
 ---
 import Icon from 'astro-icon';
+
+let showNav: boolean = Astro.props.showNav ?? true;
 ---
 
-<div class="flex flex-row items-center justify-between px-2 bg-green-400">
+<div id="navbar" class:list={['flex', 'flex-row', 'items-center', 'justify-between', 'px-2', 'bg-[#6600FF]', 'fixed', 'w-screen', 'navbar-transition', 'md:px-[25%]', { hidden: showNav}]}>
   <a href="/">
     <Icon size="40px" class="min-w-30" fill="white" pack="mdi" name="home"/>
   </a>
   <div class="flex flex-row items-center space-x-6">
-    <a class="dark:text-white">Resume</a>
-    <a class="dark:text-white">Blog</a>
-    <a class="dark:text-white">Projects</a>
+    <!-- <a class="text-white font-bold" href="/resume">Resume</a> -->
+    <!-- <a class="text-white font-bold" href="/blog">Blog</a> -->
+    <a class="text-white font-bold" href="/#projects">Projects</a>
+    <a class="text-white font-bold" href="/#contact">Contact</a>
   </div>
 </div>
 
 <style>
   [astro-icon] {
-    color: black;
+    color: rgb(255, 255, 255);
   }
-  @media (prefers-color-scheme: dark) {
-    [astro-icon] {
-      color: white;
-    }
+
+  .navbar-transition {
+    transition: top 0.3s;
   }
 </style>

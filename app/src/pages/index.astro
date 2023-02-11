@@ -1,15 +1,202 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { Icon } from "astro-icon";
+
+let showNav: boolean = false;
+
 ---
 
-<MainLayout title="Home"
+<script>
+  document.addEventListener("scroll", (event) => {
+    let heroButtons = document.getElementById('hero-buttons');
+    if (typeof(heroButtons) != 'undefined' && heroButtons != null) {
+      let bounding = heroButtons.getBoundingClientRect();
+      let navbar = document.getElementById("navbar");
+      if (navbar != null) {
+        if (bounding.top < 0) {
+          navbar.style.display = "flex";
+        } else {
+          navbar.style.display = "none";
+        }
+      }
+    }
+    let projectsSection = document.getElementById('projects');
+    if (typeof(projectsSection) != 'undefined' && projectsSection != null) {
+      let bounding = projectsSection.getBoundingClientRect();
+      if (bounding.top > 0) {
+        // top is in viewport
+        let scrollIcon = document.getElementById('scrollIcon');
+        if (typeof(scrollIcon) != 'undefined' && scrollIcon != null && scrollIcon.style.opacity != '0') {
+          scrollIcon.style.opacity = '0';
+        }
+      }
+    }
+  })
+</script>
+
+<MainLayout title="Jack Branch"
   description="Student, Software Developer, Tech Enthusiast"
+  showNav={true}
 >
-  <div class="flex flex-col items-center">
-    <h1 class="text-green-400 font-bold text-7xl text-center">Jack Branch</h1>
-    <p class="text-black dark:text-white text-2xl text-center">Student, Web Developer, Enthusiast</p>
-    <div class="flex flex-row pt-2">
-      <a class="rounded-lg bg-green-200 px-2 py-1">Contact</a>
+  <section class="flex flex-col items-center h-screen justify-between px-2 md:px-0 select-none">
+    <!-- Empty div to trick flex -->
+    <div></div>
+    <div class="flex flex-col justify-between items-center">
+      <h1 class="text-[#6600FF] font-bold text-7xl text-center">Jack Branch</h1>
+      <p class="text-black dark:text-white text-2xl text-center">Student, Web Developer, Enthusiast</p>
+      <div id="hero-buttons" class="flex flex-row pt-2 space-x-2">
+        <a href="https://github.com/JingusJohn" target="_blank" class="font-bold rounded-lg bg-green-200 px-2 py-1 flex flex-row">
+          <Icon size="25px" pack="mdi" name="github" />
+          GitHub</a>
+        <a href="#projects" class="rounded-lg bg-[#7a21ff] text-white font-bold px-2 py-1">Projects</a>
+        <a href="#contact" class="rounded-lg bg-[#7a21ff] text-white font-bold px-2 py-1">Blog</a>
+        <a href="#contact" class="rounded-lg bg-[#7a21ff] text-white font-bold px-2 py-1">Contact</a>
+      </div>
+
     </div>
-  </div>
+    <Icon id="scrollIcon" class="m-x-auto animate-bounce darkMode" name="mdi:arrow-down-bold-circle-outline" size="40px" />
+  </section>
+
+  <section id="about-me" class="md:w-[80%] lg:w-[65%] xl:w-[50%] m-auto px-4 md:px-0 pt-10">
+    <h2 class="dark:text-white text-2xl md:text-3xl font-bold py-2 text-center px-4">About Me</h2>
+    <div class="grid grid-flow-col md:col-span-2">
+      <div class="rounded-xl px-2 py-2 md:px-4 md:py-4 bg-gray-200 dark:bg-[#041c2f] md:col-span-2 space-y-2">
+        <!-- Include image later -->
+        <div class="flex flex-row md:space-x-4 ">
+          <img src="/linkedin_pfp.jpg"
+          class="w-20 h-20 rounded-[50%] hidden md:block"
+          />
+          <p class="dark:text-white text-xl">
+            I'm a sophomore pursuing my Computer Science degree at Louisiana Tech University. I'm always interested
+            in the chaotic world of web development. I prefer to be full-stack. I also love video games and memes.
+          </p>
+        </div>
+        <p class="dark:text-white text-lg">
+          The web technologies I'm enjoying at the moment are <a class="text-[#ff531a]" href="https://kit.svelte.dev" target="_blank">SvelteKit </a>
+          , <a href="https://astro.build" target="_blank" class="text-[#9333ea]">Astro</a>, 
+          <a class="text-[#0ea5e9]" href="https://tailwindcss.com" target="_blank">Tailwindcss</a>, and
+          <a class="text-[#16a394]" href="https://prisma.io" target="_blank">Prisma</a>. More information about
+          my proficiencies and preferences on my
+          <a href="/resume" class="text-[#7a21ff] dark:text-[#a163ff]"> resume</a>.
+        </p>
+        <div class="flex flex-row m-auto">
+          <a href="https://www.linkedin.com/in/jack-branch-a412b6246?original_referer=https%3A%2F%2Fwww.jackbranch.dev%2F"
+          target="_blank"
+          >
+            <Icon size="30px" name="mdi:linkedin" />
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  
+
+  <section id="projects" class="md:w-[80%] lg:w-[65%] xl:w-[50%] m-auto px-4 md:px-0 pt-10">
+    <h2 class="dark:text-white text-2xl md:text-3xl font-bold py-2 text-center px-4">My Projects</h2>
+    <div class="flex flex-col space-y-4">
+      <!-- Notbook Project -->
+      <div class="md:grid md:space-x-2 space-y-2 md:space-y-0 md:grid-flow-row md:grid-cols-2">
+        <!-- Left Side -->
+        <div class="rounded-2xl bg-gray-200 dark:bg-[#041c2f] px-4 py-2">
+          <h1 class="dark:text-white text-xl">Notebook.md <span class="text-blue-400">Nearly Finished</span></h1>
+          <picture>
+            <source srcset="/NotebookmdLogosWhite.webp" media="(prefers-color-scheme: dark)" />
+            <img class="py-2" src="/NotebookmdLogo.webp"/>
+          </picture>
+        </div>
+        <!-- Right Side -->
+        <div class="flex flex-col space-y-2 justify-between">
+          <p class="dark:text-white text-lg xl:text-xl 2xl:text-2xl">Markdown driven, web-based note-taking application. Supports
+          <span class="font-bold text-orange-300">syntax</span>{" "}
+          <span class="text-blue-400 font-bold">highlighing</span>{" "}
+          for code blocks.</p>
+          <p class="dark:text-white text-lg">
+            Created using SvelteKit, Prisma, Supabase, and Marked.
+          </p>
+          <!-- Buttons -->
+          <div class="flex flex-row space-x-4 m-auto">
+            <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://github.com/JingusJohn/notebook-md">Code</a>
+            <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://notebook.jackbranch.dev">Live Demo</a>
+            <a class="dark:text-white dark:border-white border-2">Blogpost</a>
+          </div>
+        </div>
+      </div>
+      <!-- Boss-Scheduler Project -->
+      <div class="flex md:grid md:space-x-2 space-y-2 md:space-y-0 md:grid-flow-row md:grid-cols-2 flex-col-reverse">
+        <!-- Left Side -->
+        <div class="flex flex-col space-y-2 justify-between">
+          <p class="dark:text-white text-lg xl:text-xl 2xl:text-2xl">
+            Get a calendar view while scheduling. No more going back and forth in the sections directory on BOSS.
+            This is a tool designed specifically for students at Louisiana Tech University.
+          </p>
+          <p class="dark:text-white text-lg">
+            Team project created using SvelteKit, NestJS, Prisma, Postgres.
+          </p>
+          <!-- Buttons -->
+          <div class="flex flex-row space-x-4 m-auto">
+            <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://github.com/CamJak/Boss-Integrated-Scheduler">Code</a>
+            <!-- <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://notebook.jackbranch.dev">Live Demo</a> -->
+            <!-- <a class="dark:text-white dark:border-white border-2">Blogpost</a> -->
+          </div>
+        </div>
+        <!-- Right Side -->
+        <div class="rounded-2xl bg-gray-200 dark:bg-[#041c2f] px-4 py-2">
+          <h1 class="dark:text-white text-xl">BOSS-Scheduler <span class="text-blue-400">Early Stages</span></h1>
+          <picture>
+            <source srcset="/BOSS_ART_ANGLED_LIGHT_TRANSPARENT.webp" media="(prefers-color-scheme: dark)" />
+            <img class="py-2" src="/BOSS_ART_ANGLED_DARK_TRANSPARENT.webp"/>
+          </picture>
+        </div>
+      </div>
+
+
+      <div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Spacer -->
+  <div class="h-[100px]" />
+
+  <section id="contact" class="bg-black md:w-[80%] lg:w-[65%] xl:w-[50%] md:m-auto rounded-t-2xl">
+    <h2 class="text-white text-2xl md:text-3xl font-bold py-2 text-center px-4">Contact Me</h2>
+    <form class="px-4 text-white flex flex-col space-y-1" name="contact" method="POST" data-netlify="true">
+      <label>Your name:</label>
+      <input placeholder="John Smith" required class="rounded-lg bg-gray-800 px-2 py-1" type="text" name="name" />
+      <label>Your email:</label>
+      <input placeholder="johnsmith@example.com" class="rounded-lg bg-gray-800 px-2 py-1" required type="text" name="email" />
+      <label>Your role:</label>
+      <input placeholder="recruiter" class="rounded-lg bg-gray-800 px-2 py-1" required type="text" name="role" />
+      <label>Message:</label>
+      <textarea placeholder="I like your work!" class="rounded-lg bg-gray-800 px-2 py-1" required name="message" />
+      <button class="bg-gray-600 rounded-lg" type="submit">Send</button>
+    </form>
+    <a href="https://www.linkedin.com/in/jack-branch-a412b6246?original_referer=https%3A%2F%2Fwww.jackbranch.dev%2F"
+    target="_blank"
+    >LinkedIn</a>
+  </section>
 </MainLayout>
+
+
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  [astro-icon] {
+    color: rgb(0, 0, 0);
+  }
+  @media (prefers-color-scheme: dark) {
+    [astro-icon] {
+      color: rgb(255, 255, 255);
+    }
+  }
+  [astro-icon="mdi:github"] {
+    color: black;
+  }
+
+  .navbar-transition {
+    transition: top 0.3s;
+  }
+</style>
