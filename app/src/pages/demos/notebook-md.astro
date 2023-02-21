@@ -1,0 +1,17 @@
+---
+import Notebook from "../../components/demo_components/Notebook.svelte";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+---
+
+<MainLayout
+  title="Demos"
+  description="Demos of various features of some of my projects."
+  showNav={true}
+>
+
+  <div class="pt-10 flex flex-col space-y-4 md:space-y-8">
+    <Notebook client:load/>
+  </div>
+
+</MainLayout>

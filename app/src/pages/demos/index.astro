@@ -1,0 +1,49 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+---
+
+<MainLayout
+  title="Demos"
+  description="Demos of various features of some of my projects."
+  showNav={true}
+>
+
+  <div class="pt-10 flex flex-col space-y-4 md:space-y-8">
+    <section class="md:w-[80%] lg:w-[65%] xl:w-[50%] m-auto px-4 md:px-0">
+      <h1 class="dark:text-white text-5xl">Demos</h1>
+      <p class="dark:text-white">Here you can find demos of various features without having to go through setting
+        up accounts and whatnot for the project if such a thing is required.
+      </p>
+    </section>
+
+    <section id="notebook-md" class="md:w-[80%] lg:w-[65%] xl:w-[50%] m-auto px-4 md:px-0 ">
+      <h2 class="dark:text-white text-5xl">Notebook.md</h2>
+      <div class="rounded-2xl bg-gray-200 dark:bg-[#041c2f] px-4 py-4 flex flex-col space-y-2">
+        <p class="dark:text-white">Notebook.md is a markdown-powered notebook service that allows
+          the authenticated user to create and edit markdown files. The files are stored in a database
+          and can be viewed in the preview pane where the markdown is automatically rendered as HTML.
+          Any code in the markdown is rendered with proper syntax highlighting using
+          <a class="text-red-400 font-bold"
+            href="https://highlightjs.org/"
+            target="_blank"
+            >HighlightJS</a>.
+          More information about this project can be found on the
+          <a class="text-orange-400 font-bold"
+            href="https://github.com/JingusJohn/notebook-md"
+            target="_blank"
+          >repository</a>
+          or at the
+          <a class="text-[#7a21ff] font-bold"
+            href="/projects/notebook-md"
+          >project page</a>.
+        </p>
+
+        <a class="rounded-xl bg-white dark:text-white dark:bg-slate-500 px-2 py-1 text-center font-bold"
+          href="/demos/notebook-md"
+        >See Demo</a>
+      </div>
+    </section>
+  </div>
+
+</MainLayout>

@@ -2,8 +2,6 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import { Icon } from "astro-icon";
 
-let showNav: boolean = false;
-
 ---
 
 <script>
@@ -36,9 +34,9 @@ let showNav: boolean = false;
 
 <MainLayout title="Jack Branch"
   description="Student, Software Developer, Tech Enthusiast"
-  showNav={true}
+  showNav={false}
 >
-  <section class="flex flex-col items-center h-screen justify-between px-2 md:px-0 select-none">
+  <section class="flex flex-col items-center h-screen justify-between px-2 md:px-0 select-none py-8">
     <!-- Empty div to trick flex -->
     <div></div>
     <div class="flex flex-col justify-between items-center">
@@ -96,8 +94,79 @@ let showNav: boolean = false;
   
 
   <section id="projects" class="md:w-[80%] lg:w-[65%] xl:w-[50%] m-auto px-4 md:px-0 pt-10">
-    <h2 class="dark:text-white text-2xl md:text-3xl font-bold py-2 text-center px-4">My Projects</h2>
+    <h2 class="dark:text-white text-2xl md:text-3xl font-bold py-2 text-center px-4">Recent Projects</h2>
     <div class="flex flex-col space-y-4">
+      <!-- CraftGPT Project -->
+      <div class="md:grid md:space-x-4 space-y-2 md:space-y-0 md:grid-flow-row md:grid-cols-2">
+        <!-- Left Side -->
+        <div class="rounded-2xl bg-gray-200 dark:bg-[#041c2f] px-4 py-2">
+          <h1 class="dark:text-white text-xl">Craft-GPT</h1>
+          <picture>
+            <source srcset="/CraftGPT-white.webp" media="(prefers-color-scheme: dark)" />
+            <img class="py-2" src="/CraftGPT-black.webp" alt="CraftGPT Image"/>
+          </picture>
+        </div>
+        <!-- Right Side -->
+        <div class="flex flex-col space-y-2 justify-between">
+          <p class="dark:text-white text-lg xl:text-xl 2xl:text-2xl">
+            A highly configurable Typescript-based chatbot that uses GPT-3 to generate responses to a player's chat messages.
+          </p>
+          <p class="dark:text-white text-lg">
+            Finished and can be used today!
+          </p>
+          <p class="dark:text-white text-lg">
+            Created using 
+            <a class="text-green-500"
+              href="https://nodejs.org/"
+            >Nodejs</a>,
+            <a class="text-blue-400"
+              href="https://zod.dev"
+              target="_blank"
+            >Zod</a>,
+            <a class="text-orange-300"
+              href="https://github.com/PrismarineJS/mineflayer"
+              target="_blank"
+            >Mineflayer</a>, and OpenAI's
+            <a class="text-red-400"
+              href="https://openai.com/api/"
+              target="_blank"
+            >GPT-3</a>
+          </p>
+          <!-- Buttons -->
+          <div class="flex flex-row space-x-4 m-auto">
+            <a class="font-bold rounded-lg bg-green-200 px-1 py-1" target="_blank" href="https://github.com/JingusJohn/craft-gpt-v2">Code</a>
+            <a class="bg-gray-400 dark:bg-slate-200 font-bold rounded-lg px-1 py-1" target="_blank" href="">Demo</a> 
+            <!-- add youtube video demo later -->
+          </div>
+        </div>
+      </div>
+      <!-- Boss-Scheduler Project -->
+      <div class="flex md:grid md:space-x-4 space-y-2 md:space-y-0 md:grid-flow-row md:grid-cols-2 flex-col-reverse">
+        <!-- Left Side -->
+        <div class="flex flex-col space-y-2 justify-between">
+          <p class="dark:text-white text-lg xl:text-xl 2xl:text-2xl">
+            Get a calendar view while scheduling. No more going back and forth in the sections directory on BOSS.
+            This is a tool designed specifically for students at Louisiana Tech University.
+          </p>
+          <p class="dark:text-white text-lg">
+            Team project created using SvelteKit, Nodejs, tRPC, Prisma, Postgres.
+          </p>
+          <!-- Buttons -->
+          <div class="flex flex-row space-x-4 m-auto">
+            <a class="font-bold rounded-lg bg-green-200 px-1 py-1" target="_blank" href="https://github.com/CamJak/Boss-Integrated-Scheduler">Code</a>
+            <!-- <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://notebook.jackbranch.dev">Live Demo</a> -->
+            <!-- <a class="dark:text-white dark:border-white border-2">Blogpost</a> -->
+          </div>
+        </div>
+        <!-- Right Side -->
+        <div class="rounded-2xl bg-gray-200 dark:bg-[#041c2f] px-4 py-2">
+          <h1 class="dark:text-white text-xl">BOSS-Scheduler <span class="text-blue-400">Early Stages</span></h1>
+          <picture>
+            <source srcset="/BOSS_ART_ANGLED_LIGHT_TRANSPARENT.webp" media="(prefers-color-scheme: dark)" />
+            <img class="py-2" src="/BOSS_ART_ANGLED_DARK_TRANSPARENT.webp" alt="Boss Scheduler graphic"/>
+          </picture>
+        </div>
+      </div>
       <!-- Notbook Project -->
       <div class="md:grid md:space-x-4 space-y-2 md:space-y-0 md:grid-flow-row md:grid-cols-2">
         <!-- Left Side -->
@@ -105,7 +174,7 @@ let showNav: boolean = false;
           <h1 class="dark:text-white text-xl">Notebook.md <span class="text-blue-400">Nearly Finished</span></h1>
           <picture>
             <source srcset="/NotebookmdLogosWhite.webp" media="(prefers-color-scheme: dark)" />
-            <img class="py-2" src="/NotebookmdLogo.webp"/>
+            <img class="py-2" src="/NotebookmdLogo.webp" alt="Notebookmd image"/>
           </picture>
         </div>
         <!-- Right Side -->
@@ -122,39 +191,16 @@ let showNav: boolean = false;
           </p>
           <!-- Buttons -->
           <div class="flex flex-row space-x-4 m-auto">
-            <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://github.com/JingusJohn/notebook-md">Code</a>
-            <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://notebook.jackbranch.dev">Live Demo</a>
-            <a class="dark:text-white dark:border-white border-2">Blogpost</a>
+            <a class="font-bold rounded-lg bg-green-200 px-1 py-1" target="_blank" href="https://github.com/JingusJohn/notebook-md">Code</a>
+            <!--<a class="dark:text-white dark:border-white border-2" target="_blank" href="https://notebook.jackbranch.dev">Live Demo</a>-->
+            <a class="bg-gray-400 dark:bg-slate-200 font-bold rounded-lg px-1 py-1" href="/demos/notebook-md">Functional Demo</a>
+            <a class="dark:text-white border-2 rounded-lg border-[#7a21ff] px-1 font-bold">Blogpost</a>
           </div>
         </div>
       </div>
-      <!-- Boss-Scheduler Project -->
-      <div class="flex md:grid md:space-x-4 space-y-2 md:space-y-0 md:grid-flow-row md:grid-cols-2 flex-col-reverse">
-        <!-- Left Side -->
-        <div class="flex flex-col space-y-2 justify-between">
-          <p class="dark:text-white text-lg xl:text-xl 2xl:text-2xl">
-            Get a calendar view while scheduling. No more going back and forth in the sections directory on BOSS.
-            This is a tool designed specifically for students at Louisiana Tech University.
-          </p>
-          <p class="dark:text-white text-lg">
-            Team project created using SvelteKit, NestJS, Prisma, Postgres.
-          </p>
-          <!-- Buttons -->
-          <div class="flex flex-row space-x-4 m-auto">
-            <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://github.com/CamJak/Boss-Integrated-Scheduler">Code</a>
-            <!-- <a class="dark:text-white dark:border-white border-2" target="_blank" href="https://notebook.jackbranch.dev">Live Demo</a> -->
-            <!-- <a class="dark:text-white dark:border-white border-2">Blogpost</a> -->
-          </div>
-        </div>
-        <!-- Right Side -->
-        <div class="rounded-2xl bg-gray-200 dark:bg-[#041c2f] px-4 py-2">
-          <h1 class="dark:text-white text-xl">BOSS-Scheduler <span class="text-blue-400">Early Stages</span></h1>
-          <picture>
-            <source srcset="/BOSS_ART_ANGLED_LIGHT_TRANSPARENT.webp" media="(prefers-color-scheme: dark)" />
-            <img class="py-2" src="/BOSS_ART_ANGLED_DARK_TRANSPARENT.webp"/>
-          </picture>
-        </div>
-      </div>
+      <a class="text-[#7a21ff] font-bold text-xl text-center"
+        href="/projects"
+      >View All Projects</a>
 
 
       <div>
