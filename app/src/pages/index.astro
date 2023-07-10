@@ -1,7 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import MainLayout from "../layouts/MainLayout.astro";
 import { Icon } from "astro-icon";
-
+const blogposts = await getCollection('blog');
 ---
 
 <script>
@@ -47,7 +48,7 @@ import { Icon } from "astro-icon";
           <Icon size="25px" pack="mdi" name="github" />
           GitHub</a>
         <a href="#projects" class="rounded-lg bg-[#7a21ff] text-white font-bold px-2 py-1">Projects</a>
-        <a href="#contact" class="rounded-lg bg-[#7a21ff] text-white font-bold px-2 py-1">Blog</a>
+        <a href="#blog" class="rounded-lg bg-[#7a21ff] text-white font-bold px-2 py-1">Blog</a>
         <a href="#contact" class="rounded-lg bg-[#7a21ff] text-white font-bold px-2 py-1">Contact</a>
       </div>
 
@@ -89,6 +90,47 @@ import { Icon } from "astro-icon";
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section id="blog" class="md:w-[80%] lg:w-[65%] xl:w-[50%] m-auto px-4 md:px-0 pt-10">
+    <h2 class="dark:text-white text-2xl md:text-3xl font-bold py-2 text-center px-4">Recent Blogposts</h2>
+    <div class="flex flex-col space-y-4">
+      {blogposts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(-3).map((post) => {
+        if (post.data.share.image) {
+          return (
+            <a href={`/blog/${post.data.urlParam}`} dark:text-white>
+              <article class="flex flex-col sm:flex-row dark:bg-[#041c2f] bg-gray-200 rounded-xl sm:h-24">
+                <img src="/hello_world.png" class="sm:object-fit sm:m-w-[50%] rounded-t-xl sm:rounded-r-none sm:rounded-l-xl" id={`blogpost-image-${post.data.title}`}/>
+                <div class="flex flex-col space-y-1 dark:text-white px-4 sm:px-2 py-2">
+                  <h2 class="text-2xl font-bold">
+                    {post.data.title}
+                    <span class="text-lg font-normal text-gray-800 dark:text-gray-200">{post.data.date.toLocaleDateString()}</span>
+                  </h2>
+                  <p class="">
+                    {post.data.share.description}
+                  </p>
+                  
+                </div>
+              </article>
+            </a>
+          )
+        }
+        return (
+          <article class="rounded-xl dark:bg-[#041c2f] bg-gray-200 dark:text-white px-4 py-2">
+            <h2 class="text-2xl font-bold">
+              <a href={`/blog/${post.data.urlParam}`} >
+                {post.data.title}
+              </a>
+            </h2>
+            <p>
+              {post.data.share.description}
+            </p>
+          </article>
+        )
+      })}
+      <div class="space-y-2 md:space-y-0 md:grid-flow-row md:grid-cols-2">
+      </div>
     </div>
   </section>
   

@@ -1,0 +1,103 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  title: string,
+  description: string,
+  post: CollectionEntry<'blog'>
+}
+const { title, description, post } = Astro.props
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <!-- <meta property="og:title" content={ogTitle}/> -->
+    <!-- <meta property="og:image" content="https://jackbranch.dev/favicon.png" -->
+		<title>{title}</title>
+	</head>
+	<body>
+    <div class="bg-[#6600FF] w-screen">
+      <a class="text-[#00508e]" href="/"><p class="text-center">Home</p></a>
+      <div class="px-8 sm:px-[20%] py-2">
+        <div class="flex flex-col sm:flex-row sm:space-x-4">
+          <img alt="linkedin_pfp" src="/linkedin_pfp.jpg" class="rounded-[35%] h-20 w-20"/>
+          <h1 class="text-white text-3xl sm:text-5xl">
+            {title}
+          </h1>
+        </div>
+        <p class="text-2xl">
+          {description}
+        </p>
+
+        <div class="flex flex-row space-x-2 sm:space-x-4 py-1">
+          {post.data.tags?.map(tag => {
+            return (
+              <div class="bg-[#4100a2] font-bold py-1 text-white px-2 rounded-xl">
+                #{tag}
+              </div>
+            )
+          })}
+        </div>
+
+      </div>
+    </div>
+    <div class="min-h-screen bg-white dark:bg-[#001220] dark:text-white px-8 sm:px-[20%] py-4 pb-32">
+      <slot />
+    </div>
+	</body>
+</html>
+<style is:global>
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 35px;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  h5 {
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 18px;
+    padding-top: 12px;
+    @apply sm:text-[20px]
+  }
+
+  a {
+    color: blue;
+  }
+
+  pre {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    code:not(pre code) {
+      background: #0d1117;
+      border-radius: 5px;
+      color: white;
+      padding-right: 4px;
+      padding-left: 4px;
+    }
+  }
+</style>
