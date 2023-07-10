@@ -1,6 +1,7 @@
 
 <script lang="ts">
-  import { highlight, getLanguage } from "highlightjs";
+  import hljs from "highlightjs";
+  const { highlight, getLanguage } = hljs;
   import { marked } from "marked";
   import { defaultNote } from "./notebookdata";
 
