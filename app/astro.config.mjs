@@ -21,7 +21,7 @@ import netlify from "@astrojs/netlify/functions";
 export default defineConfig({
   markdown: {
     shikiConfig: {
-      theme: 'dracula'
+      theme: 'dracula',
       wrap: false
     }
   },
